@@ -1,0 +1,21 @@
+[user]
+	name = David Morrison
+	email = drmorr@yelp.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	hist = !git --no-pager log --oneline --graph -n 20 --decorate 
+	show-tag = !sh -c 'git rev-list $0 | head -n 1 && git tag $0 -n1 -l'
+	co = checkout
+	pick = cherry-pick
+	stat = status
+	amend = commit --amend
+    m = merge --no-ff
+    repush = push -f origin HEAD
+    pdff = diff HEAD~1..HEAD
+    new = checkout -b
+    prom = pull --rebase origin master
+[push]
+	default = simple

@@ -1,0 +1,11 @@
+install:
+	git clone https://github.com/w0rp/ale pack/git-plugins/start/ale
+	git clone https://github.com/FelikZ/ctrlp-py-matcher pack/git-plugins/start/ctrlp-py-matcher
+	git clone https://github.com/ctrlpvim/ctrlp.vim pack/git-plugins/start/ctrlp.vim
+	git clone https://github.com/vim-airline/vim-airline/ pack/git-plugins/start/vim-airline
+	git clone https://github.com/vim-airline/vim-airline-themes pack/git-plugins/start/vim-airline-themes
+	git clone https://github.com/FooSoft/vim-argwrap/ pack/git-plugins/start/vim-argwrap
+	git clone git://github.com/tpope/vim-commentary.git pack/git-plugins/start/vim-commentary
+	git clone https://github.com/tpope/vim-fugitive.git pack/git-plugins/start/vim-fugitive
+	git clone https://github.com/airblade/vim-gitgutter pack/git-plugins/start/vim-gitgutter
+	git clone https://github.com/tmux-plugins/vim-tmux-focus-events pack/git-plugins/start/vim-tmux-focus-events
