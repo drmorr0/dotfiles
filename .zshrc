@@ -1,5 +1,5 @@
-export VISUAL=vim8
-export EDITOR=vim8
+export VISUAL=vim
+export EDITOR=vim
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -76,8 +76,8 @@ alias ls='ls -F --color=auto'
 alias ll='ls -lF --color=auto'
 alias la='ls -laF --color=auto'
 alias lst='ls -lrt --color=auto'
-alias vi='vim8'
-alias vs='vim8 -c "Scratch"'
+alias vi='vim'
+alias vs='vim -c "Scratch"'
 alias :q='exit'
 alias :wq='exit'
 alias grep='egrep -nI'
