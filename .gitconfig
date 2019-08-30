@@ -17,5 +17,6 @@
     pdff = diff HEAD~1..HEAD
     new = checkout -b
     prom = pull --rebase origin master
+    p = push origin HEAD
 [push]
 	default = simple

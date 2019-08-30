@@ -83,6 +83,7 @@ alias :wq='exit'
 alias grep='egrep -nI'
 alias less='less -r'
 alias jq='jq -C'
+alias gg='git grep'
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
