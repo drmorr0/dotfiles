@@ -9,3 +9,4 @@ install:
 	git clone https://github.com/tpope/vim-fugitive.git pack/git-plugins/start/vim-fugitive
 	git clone https://github.com/airblade/vim-gitgutter pack/git-plugins/start/vim-gitgutter
 	git clone https://github.com/tmux-plugins/vim-tmux-focus-events pack/git-plugins/start/vim-tmux-focus-events
+	git clone https://github.com/rust-lang/rust.vim pack/git-plugins/start/rust.vim

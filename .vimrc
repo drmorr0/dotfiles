@@ -1,4 +1,5 @@
 
+autocmd!
 colorscheme desert
 hi MatchParen cterm=bold ctermbg=none ctermfg=red
 
@@ -91,6 +92,7 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
       elseif executable('ag')
           let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
                 \ --ignore .git
+                \ --ignore "**/*.sw[po]"
                 \ --ignore .svn
                 \ --ignore .hg
                 \ --ignore .DS_Store
@@ -171,6 +173,10 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
 
   " ArgWrap {{{
     let g:argwrap_tail_comma = 1
+  " }}}
+
+  " rust.vim {{{
+    let g:rustfmt_autosave = 1
   " }}}
     
 " }}}
