@@ -68,7 +68,12 @@ vcs_info_wrapper()
 }
 
 # Prompt
-export PS1=$'%(6~.\n[%96<...<%~%<<]\n%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %(0?.%(!.#.>).X) .%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %~ %(0?.%(!.#.>).X) )%{\e[1;00m%}'
+source /home/drmorr/bin/kube-ps1.sh
+export KUBE_PS1_PREFIX=
+export KUBE_PS1_SUFFIX=" "
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_CTX_COLOR=green
+export PS1=$'%(6~.\n[%96<...<%~%<<]\n$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %(0?.%(!.#.>).X) .$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %~ %(0?.%(!.#.>).X) )%{\e[1;00m%}'
 export RPS1='$(vcs_info_wrapper) %T'
 
 # Aliases
@@ -84,9 +89,20 @@ alias grep='egrep -nI'
 alias less='less -r'
 alias jq='jq -C'
 alias gg='git grep'
+alias py='python3'
+alias kc='kubectl'
+alias kcgp='kubectl grep pods'
+alias kcdp='kubectl describe pod'
+alias kctx='kubectx'
+alias kns='kubens'
+alias kon='kubeon'
+alias koff='kubeoff'
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
 function goinside() {
     docker exec -it --user=0 $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
 }
+
+export PATH=~/bin:~/go/bin:~/.local/bin:~/.krew/bin:$PATH
+koff
