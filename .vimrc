@@ -1,8 +1,4 @@
 
-autocmd!
-colorscheme desert
-hi MatchParen cterm=bold ctermbg=none ctermfg=red
-
 syntax on
 filetype plugin on
 filetype indent on
@@ -26,9 +22,9 @@ au FocusGained,BufEnter * checktime
 
 
 " Persistent undo
-set undofile
-set undodir="$HOME/.vim/local/undo/"
+set undodir="$HOME/.vim/undo/"
 set undolevels=10000
+set undofile
 
 " Folding options {{{
 autocmd BufRead .vimrc setlocal foldmethod=marker
@@ -86,23 +82,15 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
       let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
       " Use rg or ag if avaliable. Default to find if not.
-      if executable('rg')
-          let g:ctrlp_user_command = 'rg %s --smart-case --files --color=never --glob ""'
-          let g:ctrlp_use_caching = 0
-      elseif executable('ag')
-          let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-                \ --ignore .git
-                \ --ignore "**/*.sw[po]"
-                \ --ignore .svn
-                \ --ignore .hg
-                \ --ignore .DS_Store
-                \ --ignore "**/*.pyc"
-                \ -g ""'
-          let g:ctrlp_use_caching = 0
-      else
-          let g:ctrlp_user_command = 'find %s -type f'
-          let g:ctrlp_use_caching = 1
-      endif
+      let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+            \ --ignore .git
+            \ --ignore "**/*.sw[po]"
+            \ --ignore .svn
+            \ --ignore .hg
+            \ --ignore .DS_Store
+            \ --ignore "**/*.pyc"
+            \ -g ""'
+      let g:ctrlp_use_caching = 0
 
       " Mixed mode for searching
       let g:ctrlp_cmd = 'CtrlPMixed'
@@ -173,10 +161,37 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
 
   " ArgWrap {{{
     let g:argwrap_tail_comma = 1
+    nmap <F2> :ArgWrap<CR>
   " }}}
 
   " rust.vim {{{
     let g:rustfmt_autosave = 1
   " }}}
+  
+  " vim-go {{{
+    let g:go_test_timeout = '60s'
+    let g:go_def_mapping_enabled = 0
+    let g:go_highlight_space_tab_error = 1
+    let g:go_metalinter_command = 'golangci-lint'
+    let g:ale_go_golint_executable = 'revive'
+    let g:ale_go_golint_options = '-config /Users/drmorr/.revive.toml'
+    let g:go_list_autoclose = 1
+    let g:go_list_type = 'quickfix'
+    let g:go_alternate_mode = 'tabedit'
+    au FileType go nmap gd <Plug>(go-def)
+    au FileType go nmap gn <Plug>(go-def-tab)
+    au FileType go nmap gD <Plug>(go-def-pop)
+    au FileType go nmap gb <Plug>(go-build)
+    au FileType go nmap gt <Plug>(go-test)
+    au FileType go nmap gr <Plug>(go-rename)
+    au FileType go nmap ga :GoAlternate<CR>
+  " }}}
+
+  " vim-qf {{{
+    nmap ]a <Plug>(qf_qf_previous)
+    nmap [a <Plug>(qf_qf_next)
+    nmap <F3> <Plug>(qf_qf_toggle_stay)
+  " }}}
+
     
 " }}}
