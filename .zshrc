@@ -76,27 +76,59 @@ export KUBE_PS1_CTX_COLOR=green
 export PS1=$'%(6~.\n[%96<...<%~%<<]\n$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %(0?.%(!.#.>).X) .$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %~ %(0?.%(!.#.>).X) )%{\e[1;00m%}'
 export RPS1='$(vcs_info_wrapper) %T'
 
+# This is insanity
+export EXA_COLORS="\
+da=34:\
+di=36:\
+ln=38;5;40:\
+or=31:\
+sb=38;5;28:\
+sn=33:\
+un=38;5;202;1:\
+bl=38;5;220:\
+ur=38;5;249:\
+uw=38;5;249:\
+ux=38;5;249:\
+ue=38;5;249:\
+gr=38;5;249:\
+gw=38;5;249:\
+gx=38;5;249:\
+tr=38;5;249:\
+tw=31:\
+tx=31:\
+su=37:\
+sf=37:\
+xa=37"
+
 # Aliases
-alias ls='ls -F --color=auto'
-alias ll='ls -lF --color=auto'
-alias la='ls -laF --color=auto'
-alias lst='ls -lrt --color=auto'
+alias ls='eza --icons'
+alias ll='eza --icons -lg --time-style=long-iso'
+alias la='eza --icons -lga --time-style=long-iso'
 alias vi='vim'
 alias vs='vim -c "Scratch"'
 alias :q='exit'
 alias :wq='exit'
-alias grep='egrep -nI'
+alias grep='rg -S'
 alias less='less -r'
 alias jq='jq -C'
 alias gg='git grep'
 alias py='python3'
 alias kc='kubectl'
+alias kcg='kubectl get'
 alias kcgp='kubectl grep pods'
+alias kcgn='kubectl get nodes'
+alias kcd='kubectl describe'
 alias kcdp='kubectl describe pod'
+alias kcdn='kubectl describe node'
+alias kcrm='kubectl delete'
+alias kcapp='kubectl apply -f'
+alias kcl='kubectl logs'
+alias kcex='kubectl exec -it'
 alias kctx='kubectx'
 alias kns='kubens'
 alias kon='kubeon'
 alias koff='kubeoff'
+alias sudo='sudo '
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
@@ -104,5 +136,11 @@ function goinside() {
     docker exec -it --user=0 $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
 }
 
-export PATH=~/bin:~/go/bin:~/.local/bin:~/.krew/bin:$PATH
-koff
+export GOPATH=~/src/go
+export PATH=~/bin:~/.cargo/bin:${GOPATH}/bin:~/.local/bin:~/.krew/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+
+if [[ $- != *i* ]]; then
+    return
+elif [[ $TERM == rxvt* && -z "$TMUX" ]]; then
+    exec tmux && exit 0;
+fi

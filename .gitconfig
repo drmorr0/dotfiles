@@ -1,10 +1,6 @@
 [user]
 	name = David Morrison
 	email = drmorr@evokewonder.com
-[diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
 [alias]
 	hist = !git --no-pager log --oneline --graph -n 20 --decorate 
 	show-tag = !sh -c 'git rev-list $0 | head -n 1 && git tag $0 -n1 -l'
@@ -14,9 +10,26 @@
 	amend = commit --amend
     m = merge --no-ff
     repush = push -f origin HEAD
-    pdff = diff HEAD~1..HEAD
+    pdff = diff HEAD~1  HEAD
     new = checkout -b
     prom = pull --rebase origin master
     p = push origin HEAD
 [push]
 	default = simple
+[init]
+	defaultBranch = master
+[diff]
+    external = difft
+; [merge]
+;     conflictstyle = diff3
+; [core]
+;     pager = delta
+; [interactive]
+;     diffFilter = delta --color-only
+; [delta]
+;     navigate = true    # use n and N to move between diff sections
+;     features = decorations
+;     line-numbers = true
+;     true-color = always
+;     syntax-theme = gruvbox-dark
+;     line-numbers-minus-style = red

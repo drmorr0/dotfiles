@@ -22,9 +22,9 @@ au FocusGained,BufEnter * checktime
 
 
 " Persistent undo
-set undodir="$HOME/.vim/undo/"
-set undolevels=10000
 set undofile
+set undodir=/home/drmorr/.vim/undo/
+set undolevels=10000
 
 " Folding options {{{
 autocmd BufRead .vimrc setlocal foldmethod=marker
@@ -67,12 +67,22 @@ command -nargs=+ ReplaceAll call s:ReplaceAll_Helper(<f-args>)
 " }}}
 
 " Colors {{{ 
+hi SpellBad cterm=underline ctermfg=red ctermbg=0
+hi SpellCap ctermbg=None
+
 hi MatchParen cterm=bold ctermbg=none ctermfg=red
 
 hi DiffAdd cterm=bold ctermbg=10 ctermfg=yellow
 hi DiffDelete cterm=bold ctermbg=10 ctermfg=yellow
 hi DiffChange cterm=bold ctermbg=10 ctermfg=yellow
 hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
+
+hi ALEVirtualTextError cterm=underline ctermfg=1
+hi ALEVirtualTextWarning cterm=underline ctermfg=2
+hi Pmenu ctermbg=1
+
+hi Constant ctermfg=105
+hi! link SpecialComment Comment
 " }}}
 
 " {{{ Plugin configuration
@@ -92,23 +102,32 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
             \ -g ""'
       let g:ctrlp_use_caching = 0
 
+      " Place new tabs at the end
+      let g:ctrlp_tabpage_position = 'al'
+
       " Mixed mode for searching
       let g:ctrlp_cmd = 'CtrlPMixed'
 
-      " CtrlP working patch defaults to furthest directory that has .git.
-      " Secondary path defaults to current working directory.
+    "   " CtrlP working path defaults to furthest directory that has .git.
+    "   " Secondary path defaults to current working directory.
       let g:ctrlp_working_path_mode   = 'ra'
+    "   let g:ctrlp_root_markers = ['.git', 'Cargo.toml', 'go.mod']
 
-      let g:ctrlp_custom_ignore       = '\v[\/]\.(git|hg|svn)$'
-      let g:ctrlp_show_hidden         = 1
       let g:ctrlp_max_files           = 1000000
-      let g:ctrlp_clear_cache_on_exit = 1
       let g:ctrlp_match_window        = 'bottom,order:btt,max:20,max:0'
+      let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<space>'] }
   " }}}
 
   " ale {{{
     let g:ale_set_highlights = 0
     let g:ale_sign_column_always = 1
+    let g:ale_set_loclist = 0
+    let g:ale_linters = {'go': ['golangci-lint'], 'rust': ['analyzer']}
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt']}
+    let g:ale_go_golangci_lint_package = 1
+    let g:ale_go_golangci_lint_options = '--fast'
+    let g:ale_rust_rustfmt_options = '+nightly --unstable-features --edition 2021'
+    let g:ale_rust_analyzer_config = {'cargo': {'extraArgs': ['--target-dir', '/home/drmorr/.cache/rust-analyzer'], 'features': 'all'}}
   " }}}
 
   " airline {{{
@@ -164,33 +183,24 @@ hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
     nmap <F2> :ArgWrap<CR>
   " }}}
 
-  " rust.vim {{{
-    let g:rustfmt_autosave = 1
-  " }}}
-  
   " vim-go {{{
     let g:go_test_timeout = '60s'
     let g:go_def_mapping_enabled = 0
     let g:go_highlight_space_tab_error = 1
-    let g:go_metalinter_command = 'golangci-lint'
-    let g:ale_go_golint_executable = 'revive'
-    let g:ale_go_golint_options = '-config /Users/drmorr/.revive.toml'
     let g:go_list_autoclose = 1
     let g:go_list_type = 'quickfix'
     let g:go_alternate_mode = 'tabedit'
-    au FileType go nmap gd <Plug>(go-def)
-    au FileType go nmap gn <Plug>(go-def-tab)
-    au FileType go nmap gD <Plug>(go-def-pop)
-    au FileType go nmap gb <Plug>(go-build)
-    au FileType go nmap gt <Plug>(go-test)
-    au FileType go nmap gr <Plug>(go-rename)
-    au FileType go nmap ga :GoAlternate<CR>
   " }}}
 
   " vim-qf {{{
     nmap ]a <Plug>(qf_qf_previous)
     nmap [a <Plug>(qf_qf_next)
     nmap <F3> <Plug>(qf_qf_toggle_stay)
+  " }}}
+  
+  " vimtex {{{
+    let g:vimtex_view_method = 'zathura'
+    let g:vimtex_quickfix_enabled = 0
   " }}}
 
     
