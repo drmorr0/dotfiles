@@ -102,8 +102,9 @@ xa=37"
 
 # Aliases
 alias ls='eza --icons'
-alias ll='eza --icons -lg --time-style=long-iso'
-alias la='eza --icons -lga --time-style=long-iso'
+alias ll='ls -lg --time-style=long-iso'
+alias la='ls -lga --time-style=long-iso'
+alias lsg='ls --git-ignore'
 alias vi='vim'
 alias vs='vim -c "Scratch"'
 alias :q='exit'
@@ -144,3 +145,4 @@ if [[ $- != *i* ]]; then
 elif [[ $TERM == rxvt* && -z "$TMUX" ]]; then
     exec tmux && exit 0;
 fi
+eval "$(atuin init zsh --disable-up-arrow)"

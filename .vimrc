@@ -20,6 +20,8 @@ set autoread
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * checktime
 
+" return to the last place you were editing
+autocmd BufReadPost * silent! normal! g`"zv
 
 " Persistent undo
 set undofile
@@ -66,7 +68,7 @@ endfunction
 command -nargs=+ ReplaceAll call s:ReplaceAll_Helper(<f-args>)
 " }}}
 
-" Colors {{{ 
+" Colors {{{
 hi SpellBad cterm=underline ctermfg=red ctermbg=0
 hi SpellCap ctermbg=None
 
@@ -122,12 +124,8 @@ hi! link SpecialComment Comment
     let g:ale_set_highlights = 0
     let g:ale_sign_column_always = 1
     let g:ale_set_loclist = 0
-    let g:ale_linters = {'go': ['golangci-lint'], 'rust': ['analyzer']}
-    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt']}
-    let g:ale_go_golangci_lint_package = 1
-    let g:ale_go_golangci_lint_options = '--fast'
-    let g:ale_rust_rustfmt_options = '+nightly --unstable-features --edition 2021'
-    let g:ale_rust_analyzer_config = {'cargo': {'extraArgs': ['--target-dir', '/home/drmorr/.cache/rust-analyzer'], 'features': 'all'}}
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt'], 'python': ['remove_trailing_lines', 'trim_whitespace', 'isort']}
+    let g:ale_fix_on_save = 1
   " }}}
 
   " airline {{{
@@ -197,11 +195,15 @@ hi! link SpecialComment Comment
     nmap [a <Plug>(qf_qf_next)
     nmap <F3> <Plug>(qf_qf_toggle_stay)
   " }}}
-  
+
   " vimtex {{{
     let g:vimtex_view_method = 'zathura'
     let g:vimtex_quickfix_enabled = 0
   " }}}
 
-    
+    " surround {{{
+    nmap <leader>` ysiW`
+    nmap <leader>] ysiW]
+    nmap <leader>_ ysiW_
+    "}}}
 " }}}
