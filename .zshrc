@@ -57,7 +57,7 @@ zstyle ':completion:*' users-hosts drmorr@evokewonder.com
 # Git stuff; this slows the prompt down a bit
 zstyle ':vcs_info:*' actionformats '<%r/%0.24%b...|%a>'
 zstyle ':vcs_info:*' formats '(%r/%0.24b...)'
-zstyle ':vcs_info:*' enable git 
+zstyle ':vcs_info:*' enable git
 
 vcs_info_wrapper()
 {
@@ -116,7 +116,7 @@ alias gg='git grep'
 alias py='python3'
 alias kc='kubectl'
 alias kcg='kubectl get'
-alias kcgp='kubectl grep pods'
+alias -g kcgp='kubectl grep pods'
 alias kcgn='kubectl get nodes'
 alias kcd='kubectl describe'
 alias kcdp='kubectl describe pod'
@@ -125,6 +125,7 @@ alias kcrm='kubectl delete'
 alias kcapp='kubectl apply -f'
 alias kcl='kubectl logs'
 alias kcex='kubectl exec -it'
+alias kcpf='kubectl port-forward'
 alias kctx='kubectx'
 alias kns='kubens'
 alias kon='kubeon'
@@ -139,10 +140,7 @@ function goinside() {
 
 export GOPATH=~/src/go
 export PATH=~/bin:~/.cargo/bin:${GOPATH}/bin:~/.local/bin:~/.krew/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+export TERM=alacritty
 
-if [[ $- != *i* ]]; then
-    return
-elif [[ $TERM == rxvt* && -z "$TMUX" ]]; then
-    exec tmux && exit 0;
-fi
 eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(/usr/bin/mise activate zsh)"
