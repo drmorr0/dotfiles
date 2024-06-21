@@ -130,7 +130,7 @@ alias kctx='kubectx'
 alias kns='kubens'
 alias kon='kubeon'
 alias koff='kubeoff'
-alias sudo='sudo '
+alias sudo='sudo '  # aliasing sudo to 'sudo ' passes aliases through sudo, e.g., sudo kcgp now works
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
