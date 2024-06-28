@@ -14,3 +14,6 @@ install:
 	-git clone https://github.com/romainl/vim-qf pack/git-plugins/start/vim-qf
 	-git clone https://github.com/KabbAmine/zeavim.vim pack/git-plugins/start/zeavim
 	-git clone https://github.com/lervag/vimtex pack/git-plugins/start/vimtex
+	-git clone https://github.com/tpope/vim-surround pack/git-plugins/start/vim-surround
+	-git clone https://github.com/embear/vim-localvimrc pack/git-plugins/start/vim-localvimrc
+	-git clone https://github.com/NoahTheDuke/vim-just pack/git-plugins/start/vim-just

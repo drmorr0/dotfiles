@@ -44,7 +44,7 @@ bindkey '^[OM' accept-line			   # Shift-Enter
 
 autoload -Uz vcs_info
 
-fpath=(~/.zshfiles/ $fpath)
+fpath=(~/.local/share/zsh/site-functions/ $fpath)
 autoload -U compinit
 compinit
 
@@ -116,8 +116,8 @@ alias gg='git grep'
 alias py='python3'
 alias kc='kubectl'
 alias kcg='kubectl get'
-alias -g kcgp='kubectl grep pods'
-alias kcgn='kubectl get nodes'
+alias -g kcgp='kubectl grep pods'  # use -g to pass aliases through to watch
+alias -g kcgn='kubectl get nodes'
 alias kcd='kubectl describe'
 alias kcdp='kubectl describe pod'
 alias kcdn='kubectl describe node'
@@ -138,9 +138,9 @@ function goinside() {
     docker exec -it --user=0 $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
 }
 
-export GOPATH=~/src/go
-export PATH=~/bin:~/.cargo/bin:${GOPATH}/bin:~/.local/bin:~/.krew/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+export PATH=~/bin:~/.local/bin:~/.krew/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 export TERM=alacritty
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(/usr/bin/mise activate zsh)"

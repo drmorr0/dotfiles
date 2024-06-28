@@ -74,10 +74,11 @@ hi SpellCap ctermbg=None
 
 hi MatchParen cterm=bold ctermbg=none ctermfg=red
 
-hi DiffAdd cterm=bold ctermbg=10 ctermfg=yellow
-hi DiffDelete cterm=bold ctermbg=10 ctermfg=yellow
-hi DiffChange cterm=bold ctermbg=10 ctermfg=yellow
-hi DiffText cterm=bold ctermbg=10 ctermfg=yellow
+hi SignColumn ctermbg=7
+hi DiffAdd cterm=bold ctermbg=7 ctermfg=yellow
+hi DiffDelete cterm=bold ctermbg=7 ctermfg=yellow
+hi DiffChange cterm=bold ctermbg=7 ctermfg=yellow
+hi DiffText cterm=bold ctermbg=7 ctermfg=yellow
 
 hi ALEVirtualTextError cterm=underline ctermfg=1
 hi ALEVirtualTextWarning cterm=underline ctermfg=2
@@ -124,7 +125,12 @@ hi! link SpecialComment Comment
     let g:ale_set_highlights = 0
     let g:ale_sign_column_always = 1
     let g:ale_set_loclist = 0
-    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt'], 'python': ['remove_trailing_lines', 'trim_whitespace', 'isort']}
+    let g:ale_fixers = {
+                \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+                \ 'rust': ['rustfmt'],
+                \ 'python': ['remove_trailing_lines', 'trim_whitespace', 'ruff', 'ruff_format'],
+                \ }
+    let g:ale_linter = {'python': ['ruff']}
     let g:ale_fix_on_save = 1
   " }}}
 
@@ -170,6 +176,11 @@ hi! link SpecialComment Comment
   " gitgutter {{{
     let g:gitgutter_sign_modified = '*'
     let g:gitgutter_sign_modified_removed = '*-'
+    let g:gitgutter_sign_removed = '-'
+
+    hi def link GitGutterAdd DiffAdd
+    hi def link GitGutterDelete DiffDelete
+    hi def link GitGutterChange DiffChange
   " }}}
 
   " localvimrc {{{
@@ -179,15 +190,6 @@ hi! link SpecialComment Comment
   " ArgWrap {{{
     let g:argwrap_tail_comma = 1
     nmap <F2> :ArgWrap<CR>
-  " }}}
-
-  " vim-go {{{
-    let g:go_test_timeout = '60s'
-    let g:go_def_mapping_enabled = 0
-    let g:go_highlight_space_tab_error = 1
-    let g:go_list_autoclose = 1
-    let g:go_list_type = 'quickfix'
-    let g:go_alternate_mode = 'tabedit'
   " }}}
 
   " vim-qf {{{
