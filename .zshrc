@@ -68,7 +68,7 @@ vcs_info_wrapper()
 }
 
 # Prompt
-source /home/drmorr/bin/kube-ps1.sh
+source ~/bin/kube-ps1.sh
 export KUBE_PS1_PREFIX=
 export KUBE_PS1_SUFFIX=" "
 export KUBE_PS1_SYMBOL_ENABLE=false

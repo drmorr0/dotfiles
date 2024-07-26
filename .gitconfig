@@ -14,6 +14,7 @@
     new = checkout -b
     prom = pull --rebase origin master
     p = push origin HEAD
+    cm = commit -a -m 
 [push]
 	default = simple
 [init]
