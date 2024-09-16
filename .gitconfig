@@ -1,6 +1,8 @@
 [user]
 	name = David Morrison
 	email = drmorr@evokewonder.com
+[core]
+    excludesFile = ~/.gitignore_global
 [alias]
 	hist = !git --no-pager log --oneline --graph -n 20 --decorate
 	show-tag = !sh -c 'git rev-list $0 | head -n 1 && git tag $0 -n1 -l'
@@ -14,7 +16,7 @@
     new = checkout -b
     prom = pull --rebase origin master
     p = push origin HEAD
-    cm = commit -a -m 
+    cm = commit -a -m
 [push]
 	default = simple
 [init]
