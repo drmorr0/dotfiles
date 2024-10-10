@@ -8,15 +8,19 @@
 	show-tag = !sh -c 'git rev-list $0 | head -n 1 && git tag $0 -n1 -l'
 	co = checkout
 	pick = cherry-pick
-	stat = status
+	st = status
+    a = add
 	amend = commit --amend
     m = merge --ff
-    repush = push -f origin HEAD
+    rb = rebase
+    rp = push -f origin HEAD
     pdff = diff HEAD~1  HEAD
     new = checkout -b
     prom = pull --rebase origin master
-    p = push origin HEAD
+    p = push origin HEAD --tags
+    br = branch
     cm = commit -a -m
+    d = diff
 [push]
 	default = simple
 [init]
@@ -25,3 +29,9 @@
     external = difft
 [rerere]
 	enabled = true
+[merge]
+	conflictStyle = zdiff3
+[status]
+	submoduleSummary = true
+[submodule]
+	recurse = true

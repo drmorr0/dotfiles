@@ -90,35 +90,8 @@ hi! link SpecialComment Comment
 
 " {{{ Plugin configuration
 
-  " ctrl-p {{{
-    " Use PyMatch for much faster matching
-      let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-
-      " Use rg or ag if avaliable. Default to find if not.
-      let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-            \ --ignore .git
-            \ --ignore "**/*.sw[po]"
-            \ --ignore .svn
-            \ --ignore .hg
-            \ --ignore .DS_Store
-            \ --ignore "**/*.pyc"
-            \ -g ""'
-      let g:ctrlp_use_caching = 0
-
-      " Place new tabs at the end
-      let g:ctrlp_tabpage_position = 'al'
-
-      " Mixed mode for searching
-      let g:ctrlp_cmd = 'CtrlPMixed'
-
-    "   " CtrlP working path defaults to furthest directory that has .git.
-    "   " Secondary path defaults to current working directory.
-      let g:ctrlp_working_path_mode   = 'ra'
-    "   let g:ctrlp_root_markers = ['.git', 'Cargo.toml', 'go.mod']
-
-      let g:ctrlp_max_files           = 1000000
-      let g:ctrlp_match_window        = 'bottom,order:btt,max:20,max:0'
-      let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<space>'] }
+  " fzf {{{
+    nnoremap <c-P> :History<cr>
   " }}}
 
   " ale {{{
@@ -207,5 +180,6 @@ hi! link SpecialComment Comment
     nmap <leader>` ysiW`
     nmap <leader>] ysiW]
     nmap <leader>_ ysiW_
+    nmap <leader>" ysiW"
     "}}}
 " }}}

@@ -1,7 +1,5 @@
 install:
 	-git clone https://github.com/w0rp/ale pack/git-plugins/start/ale
-	-git clone https://github.com/FelikZ/ctrlp-py-matcher pack/git-plugins/start/ctrlp-py-matcher
-	-git clone https://github.com/ctrlpvim/ctrlp.vim pack/git-plugins/start/ctrlp.vim
 	-git clone https://github.com/vim-airline/vim-airline/ pack/git-plugins/start/vim-airline
 	-git clone https://github.com/vim-airline/vim-airline-themes pack/git-plugins/start/vim-airline-themes
 	-git clone https://github.com/FooSoft/vim-argwrap/ pack/git-plugins/start/vim-argwrap
@@ -17,3 +15,4 @@ install:
 	-git clone https://github.com/tpope/vim-surround pack/git-plugins/start/vim-surround
 	-git clone https://github.com/embear/vim-localvimrc pack/git-plugins/start/vim-localvimrc
 	-git clone https://github.com/NoahTheDuke/vim-just pack/git-plugins/start/vim-just
+	-git clone https://github.com/junegunn/fzf.vim pack/git-plugins/start/fzf
