@@ -101,17 +101,19 @@ sf=37:\
 xa=37"
 
 # Aliases
-alias ls='eza --icons'
+alias ls='eza --icons=always'
 alias ll='ls -lg --time-style=long-iso'
 alias la='ls -lga --time-style=long-iso'
 alias lsg='ls --git-ignore'
 alias vi='vim'
 alias vs='vim -c "Scratch"'
+alias vz='vim $(fzf --tmux)'
 alias :q='exit'
 alias :wq='exit'
 alias grep='rg -S'
 alias less='less -r'
 alias jq='jq -C'
+alias g='git'
 alias gg='git grep'
 alias py='python3'
 alias kc='kubectl'
@@ -141,6 +143,7 @@ function goinside() {
 export PATH=~/bin:~/.local/bin:~/.krew/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 export TERM=alacritty
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export FZF_DEFAULT_OPTS="--walker-skip=.git,node_modules,.cargo,.local,.build"
 
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(/usr/bin/mise activate zsh)"

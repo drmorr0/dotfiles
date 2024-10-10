@@ -92,6 +92,11 @@ hi! link SpecialComment Comment
 
   " fzf {{{
     nnoremap <c-P> :History<cr>
+    if exists('$TMUX')
+      let g:fzf_layout = { 'tmux': '90%,70%' }
+    else
+      let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+    endif
   " }}}
 
   " ale {{{
