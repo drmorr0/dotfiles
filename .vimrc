@@ -91,7 +91,7 @@ hi! link SpecialComment Comment
 " {{{ Plugin configuration
 
   " fzf {{{
-    nnoremap <c-P> :History<cr>
+    nnoremap <c-P> :Files<cr>
     if exists('$TMUX')
       let g:fzf_layout = { 'tmux': '90%,70%' }
     else
@@ -103,12 +103,15 @@ hi! link SpecialComment Comment
     let g:ale_set_highlights = 0
     let g:ale_sign_column_always = 1
     let g:ale_set_loclist = 0
+
+    " ruff calls `ruff check --fix` whereas ruff_format calls `ruff format`
     let g:ale_fixers = {
                 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
                 \ 'rust': ['rustfmt'],
                 \ 'python': ['remove_trailing_lines', 'trim_whitespace', 'ruff', 'ruff_format'],
                 \ }
-    let g:ale_linter = {'python': ['ruff']}
+    " note that linters just show error messages inline, fixers actually fix things on save
+    let g:ale_linters = {'python': ['ruff'], 'rust': ['analyzer']}
     let g:ale_fix_on_save = 1
   " }}}
 
