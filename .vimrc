@@ -92,6 +92,7 @@ hi! link SpecialComment Comment
 
   " fzf {{{
     nnoremap <c-P> :Files<cr>
+    nnoremap <c-H> :Rg<cr>
     if exists('$TMUX')
       let g:fzf_layout = { 'tmux': '90%,70%' }
     else
