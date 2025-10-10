@@ -167,6 +167,7 @@ hi! link SpecialComment Comment
 
   " localvimrc {{{
     let g:localvimrc_persistent = 2
+    let g:localvimrc_sandbox = 0  " we still ask for permission before loading, should only load stuff you trust
   " }}}
 
   " ArgWrap {{{

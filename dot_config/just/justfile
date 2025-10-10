@@ -1,0 +1,12 @@
+aws-login:
+    #!/usr/bin/env bash
+    aws sts get-caller-identity --profile gandalf &> /dev/null
+    if [ "$?" != 0 ]; then
+      aws sso login
+    fi
+
+ecr-login-east: aws-login
+    aws ecr get-login-password --profile gandalf --region us-east-1 | docker login --username AWS --password-stdin 174155008850.dkr.ecr.us-east-1.amazonaws.com
+
+ecr-login: aws-login
+    aws ecr get-login-password --profile gandalf --region us-west-2 | docker login --username AWS --password-stdin 174155008850.dkr.ecr.us-west-2.amazonaws.com

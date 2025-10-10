@@ -1,0 +1,14 @@
+[user]
+name = "David R. Morrison"
+email = "drmorr@appliedcomputing.io"
+
+[colors]
+rest = "blue"
+
+[ui]
+log-word-wrap = true
+
+[template-aliases]
+'format_short_change_id(id)' = 'id.shortest()'
+'format_short_signature(signature)' = 'signature.email().local()'
+'format_timestamp(timestamp)' = 'timestamp.ago()'

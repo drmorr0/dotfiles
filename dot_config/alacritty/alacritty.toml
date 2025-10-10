@@ -34,5 +34,5 @@ colors.vi_mode_cursor.text = '0x575279'
 font.size = 7
 font.normal.family = 'Hack Nerd Font Mono'
 selection.save_to_clipboard = true
-shell.program = '/usr/bin/tmux'
 window.decorations = 'none'
+terminal.shell.program = '/usr/bin/tmux'
