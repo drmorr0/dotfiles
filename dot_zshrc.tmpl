@@ -68,7 +68,7 @@ vcs_info_wrapper()
 }
 
 # Prompt
-source /home/drmorr/bin/kube-ps1.sh
+source ~/bin/kube-ps1.sh
 export KUBE_PS1_PREFIX=
 export KUBE_PS1_SUFFIX=" "
 export KUBE_PS1_SYMBOL_ENABLE=false
@@ -143,14 +143,16 @@ function goinside() {
 }
 
 export PATH=~/bin:~/.local/bin:~/.krew/bin:~/.cargo/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
-{{ if eq .term "alacritty" -}}
+{{- if eq .term "alacritty" }}
 export TERM=alacritty
 {{- end }}
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-export FZF_DEFAULT_COMMAND='rg'
+export FZF_DEFAULT_COMMAND='rg --files'
+eval "$(atuin init zsh --disable-up-arrow)"
+
+{{- if eq .chezmoi.hostname "acrl1" }}
 export MISE_POETRY_AUTO_INSTALL=1
 export MISE_POETRY_VENV_AUTO=1
 export MISE_PYTHON_DEFAULT_PACKAGES_FILE=.config/mise/default-python-packages
 
-eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(/usr/bin/mise activate zsh)"
+{{- end }}
