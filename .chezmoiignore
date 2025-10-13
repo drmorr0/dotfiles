@@ -1,2 +1,10 @@
 macos
 .config/i3/display-config
+
+{{- if ne .chezmoi.hostname "acrl1" -}}
+.config/alacritty
+.config/dunst
+.config/i3*
+.config/just
+.gdbinit
+{{- end -}}
