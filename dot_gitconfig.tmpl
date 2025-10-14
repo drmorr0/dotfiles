@@ -16,7 +16,7 @@
     rp = push -f origin HEAD
     pdff = diff HEAD~1  HEAD
     new = checkout -b
-    prom = pull --rebase origin master
+    prom = pull --rebase origin {{ .defaultBranch }}
     p = push origin HEAD --tags
     br = branch
     cm = commit -a -m
@@ -24,7 +24,7 @@
 [push]
     default = simple
 [init]
-    defaultBranch = master
+    defaultBranch = {{ .defaultBranch }}
 [diff]
     external = difft
 [rerere]
