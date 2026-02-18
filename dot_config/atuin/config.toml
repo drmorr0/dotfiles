@@ -141,6 +141,9 @@ common_subcommands = [
   "make",
   "poetry",
   "just",
+  "g",
+  "j",
+  "jj",
 ]
 
 # Set commands that should be totally stripped and ignored from stats

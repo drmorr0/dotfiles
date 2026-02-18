@@ -17,3 +17,4 @@ install:
 	-git clone https://github.com/NoahTheDuke/vim-just pack/git-plugins/start/vim-just
 	-git clone https://github.com/junegunn/fzf.vim pack/git-plugins/start/fzf.vim
 	-git clone https://github.com/junegunn/fzf pack/git-plugins/start/fzf
+	-git clone https://github.com/pest-parser/pest.vim pack/git-plugins/start/pest

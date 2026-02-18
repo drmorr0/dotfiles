@@ -10,3 +10,15 @@ ecr-login-east: aws-login
 
 ecr-login: aws-login
     aws ecr get-login-password --profile gandalf --region us-west-2 | docker login --username AWS --password-stdin 174155008850.dkr.ecr.us-west-2.amazonaws.com
+
+alias connect := ec2-connect
+alias conn := ec2-connect
+alias login := ec2-connect
+ec2-connect instance user="ubuntu": aws-login
+    aws ec2-instance-connect send-ssh-public-key \
+        --instance-id {{ instance }} \
+        --region us-west-2 \
+        --instance-os-user {{ user }} \
+        --ssh-public-key file://~/.ssh/aws_ec2_drmorr.pub \
+        --profile gandalf
+    ssh {{ user }}@`aws ec2 describe-instances --instance-id {{ instance }} | jq -Mr ".Reservations[0].Instances[0].PrivateIpAddress"`
