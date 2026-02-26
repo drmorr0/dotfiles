@@ -138,10 +138,6 @@ alias sk='skctl'
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
-function goinside() {
-    docker exec -it --user=0 $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
-}
-
 export PATH=~/bin:~/.local/bin:~/.krew/bin:~/.cargo/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 {{- if eq .term "alacritty" }}
 export TERM=alacritty

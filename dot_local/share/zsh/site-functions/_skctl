@@ -1,0 +1,502 @@
+#compdef skctl
+
+autoload -U is-at-least
+
+_skctl() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_skctl_commands" \
+"*::: :->skctl" \
+&& ret=0
+    case $state in
+    (skctl)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:skctl-command-$line[1]:"
+        case $line[1] in
+            (completions)
+_arguments "${_arguments_options[@]}" : \
+'-o[]' \
+'--stdout[]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':shell:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(crd)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(delete)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':name:_default' \
+&& ret=0
+;;
+(export)
+_arguments "${_arguments_options[@]}" : \
+'-s+[]:START_TIME:_default' \
+'--start-time=[]:START_TIME:_default' \
+'-t+[]:END_TIME:_default' \
+'--end-time=[]:END_TIME:_default' \
+'*--excluded-namespaces=[]:EXCLUDED_NAMESPACES:_default' \
+'--tracer-address=[]:TRACER_ADDRESS:_default' \
+'-o+[]:OUTPUT_PATH:_default' \
+'--output-path=[]:OUTPUT_PATH:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" : \
+'-D+[]:DURATION:_default' \
+'--duration=[]:DURATION:_default' \
+'-s+[]:SPEED:_default' \
+'--speed=[]:SPEED:_default' \
+'-N+[]:REPETITIONS:_default' \
+'--repetitions=[]:REPETITIONS:_default' \
+'-I+[]:DRIVER_IMAGE:_default' \
+'--driver-image=[]:DRIVER_IMAGE:_default' \
+'--driver-port=[]:DRIVER_PORT:_default' \
+'-f+[]:TRACE_PATH:_default' \
+'--trace-path=[]:TRACE_PATH:_default' \
+'--driver-namespace=[]:DRIVER_NAMESPACE:_default' \
+'--hooks=[]:HOOKS:_default' \
+'--metrics-namespace=[]:METRICS_NAMESPACE:_default' \
+'--metrics-service-account=[]:METRICS_SERVICE_ACCOUNT:_default' \
+'*--metrics-pod-monitor-namespaces=[]:METRICS_POD_MONITOR_NAMESPACES:_default' \
+'*--metrics-pod-monitor-names=[]:METRICS_POD_MONITOR_NAMES:_default' \
+'*--metrics-service-monitor-namespaces=[]:METRICS_SERVICE_MONITOR_NAMESPACES:_default' \
+'*--metrics-service-monitor-names=[]:METRICS_SERVICE_MONITOR_NAMES:_default' \
+'--prometheus-shards=[]:PROMETHEUS_SHARDS:_default' \
+'--remote-write-endpoint=[]:REMOTE_WRITE_ENDPOINT:_default' \
+'--disable-metrics[]' \
+'-h[]' \
+'--help[]' \
+'-V[]' \
+'--version[]' \
+':name:_default' \
+&& ret=0
+;;
+(snapshot)
+_arguments "${_arguments_options[@]}" : \
+'-c+[]:CONFIG_FILE:_default' \
+'--config-file=[]:CONFIG_FILE:_default' \
+'*--excluded-namespaces=[]:EXCLUDED_NAMESPACES:_default' \
+'-o+[]:OUTPUT:_default' \
+'--output=[]:OUTPUT:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(validate)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_skctl__validate_commands" \
+"*::: :->validate" \
+&& ret=0
+
+    case $state in
+    (validate)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:skctl-validate-command-$line[1]:"
+        case $line[1] in
+            (check)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':trace_path:_default' \
+&& ret=0
+;;
+(explain)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':code:_default' \
+&& ret=0
+;;
+(print)
+_arguments "${_arguments_options[@]}" : \
+'-f+[]:FORMAT:(json list table yaml)' \
+'--format=[]:FORMAT:(json list table yaml)' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_skctl__validate__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:skctl-validate-help-command-$line[1]:"
+        case $line[1] in
+            (check)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(explain)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(print)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(version)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(xray)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':trace_path:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_skctl__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:skctl-help-command-$line[1]:"
+        case $line[1] in
+            (completions)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(crd)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(delete)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(export)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(snapshot)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(validate)
+_arguments "${_arguments_options[@]}" : \
+":: :_skctl__help__validate_commands" \
+"*::: :->validate" \
+&& ret=0
+
+    case $state in
+    (validate)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:skctl-help-validate-command-$line[1]:"
+        case $line[1] in
+            (check)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(explain)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(print)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(version)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(xray)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_skctl_commands] )) ||
+_skctl_commands() {
+    local commands; commands=(
+'completions:generate shell completions for skctl' \
+'crd:print SimKube CRDs' \
+'delete:delete a simulation' \
+'export:export simulation trace data' \
+'run:run a simulation' \
+'snapshot:take a point-in-time snapshot of a cluster (does not require sk-tracer to be running)' \
+'validate:' \
+'version:simkube version' \
+'xray:explore or prepare trace data for simulation' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'skctl commands' commands "$@"
+}
+(( $+functions[_skctl__completions_commands] )) ||
+_skctl__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl completions commands' commands "$@"
+}
+(( $+functions[_skctl__crd_commands] )) ||
+_skctl__crd_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl crd commands' commands "$@"
+}
+(( $+functions[_skctl__delete_commands] )) ||
+_skctl__delete_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl delete commands' commands "$@"
+}
+(( $+functions[_skctl__export_commands] )) ||
+_skctl__export_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl export commands' commands "$@"
+}
+(( $+functions[_skctl__help_commands] )) ||
+_skctl__help_commands() {
+    local commands; commands=(
+'completions:generate shell completions for skctl' \
+'crd:print SimKube CRDs' \
+'delete:delete a simulation' \
+'export:export simulation trace data' \
+'run:run a simulation' \
+'snapshot:take a point-in-time snapshot of a cluster (does not require sk-tracer to be running)' \
+'validate:' \
+'version:simkube version' \
+'xray:explore or prepare trace data for simulation' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'skctl help commands' commands "$@"
+}
+(( $+functions[_skctl__help__completions_commands] )) ||
+_skctl__help__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help completions commands' commands "$@"
+}
+(( $+functions[_skctl__help__crd_commands] )) ||
+_skctl__help__crd_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help crd commands' commands "$@"
+}
+(( $+functions[_skctl__help__delete_commands] )) ||
+_skctl__help__delete_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help delete commands' commands "$@"
+}
+(( $+functions[_skctl__help__export_commands] )) ||
+_skctl__help__export_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help export commands' commands "$@"
+}
+(( $+functions[_skctl__help__help_commands] )) ||
+_skctl__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help help commands' commands "$@"
+}
+(( $+functions[_skctl__help__run_commands] )) ||
+_skctl__help__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help run commands' commands "$@"
+}
+(( $+functions[_skctl__help__snapshot_commands] )) ||
+_skctl__help__snapshot_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help snapshot commands' commands "$@"
+}
+(( $+functions[_skctl__help__validate_commands] )) ||
+_skctl__help__validate_commands() {
+    local commands; commands=(
+'check:check a trace file' \
+'explain:explain a rule' \
+'print:print all validation rules' \
+    )
+    _describe -t commands 'skctl help validate commands' commands "$@"
+}
+(( $+functions[_skctl__help__validate__check_commands] )) ||
+_skctl__help__validate__check_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help validate check commands' commands "$@"
+}
+(( $+functions[_skctl__help__validate__explain_commands] )) ||
+_skctl__help__validate__explain_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help validate explain commands' commands "$@"
+}
+(( $+functions[_skctl__help__validate__print_commands] )) ||
+_skctl__help__validate__print_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help validate print commands' commands "$@"
+}
+(( $+functions[_skctl__help__version_commands] )) ||
+_skctl__help__version_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help version commands' commands "$@"
+}
+(( $+functions[_skctl__help__xray_commands] )) ||
+_skctl__help__xray_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl help xray commands' commands "$@"
+}
+(( $+functions[_skctl__run_commands] )) ||
+_skctl__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl run commands' commands "$@"
+}
+(( $+functions[_skctl__snapshot_commands] )) ||
+_skctl__snapshot_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl snapshot commands' commands "$@"
+}
+(( $+functions[_skctl__validate_commands] )) ||
+_skctl__validate_commands() {
+    local commands; commands=(
+'check:check a trace file' \
+'explain:explain a rule' \
+'print:print all validation rules' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'skctl validate commands' commands "$@"
+}
+(( $+functions[_skctl__validate__check_commands] )) ||
+_skctl__validate__check_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate check commands' commands "$@"
+}
+(( $+functions[_skctl__validate__explain_commands] )) ||
+_skctl__validate__explain_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate explain commands' commands "$@"
+}
+(( $+functions[_skctl__validate__help_commands] )) ||
+_skctl__validate__help_commands() {
+    local commands; commands=(
+'check:check a trace file' \
+'explain:explain a rule' \
+'print:print all validation rules' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'skctl validate help commands' commands "$@"
+}
+(( $+functions[_skctl__validate__help__check_commands] )) ||
+_skctl__validate__help__check_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate help check commands' commands "$@"
+}
+(( $+functions[_skctl__validate__help__explain_commands] )) ||
+_skctl__validate__help__explain_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate help explain commands' commands "$@"
+}
+(( $+functions[_skctl__validate__help__help_commands] )) ||
+_skctl__validate__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate help help commands' commands "$@"
+}
+(( $+functions[_skctl__validate__help__print_commands] )) ||
+_skctl__validate__help__print_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate help print commands' commands "$@"
+}
+(( $+functions[_skctl__validate__print_commands] )) ||
+_skctl__validate__print_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl validate print commands' commands "$@"
+}
+(( $+functions[_skctl__version_commands] )) ||
+_skctl__version_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl version commands' commands "$@"
+}
+(( $+functions[_skctl__xray_commands] )) ||
+_skctl__xray_commands() {
+    local commands; commands=()
+    _describe -t commands 'skctl xray commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_skctl" ]; then
+    _skctl "$@"
+else
+    compdef _skctl skctl
+fi
