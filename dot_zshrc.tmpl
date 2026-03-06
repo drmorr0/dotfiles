@@ -138,6 +138,10 @@ alias sk='skctl'
 
 if [ -f ~/.zshextra ]; then source ~/.zshextra; fi
 
+if [[ -z "${SSH_CONNECTION}" ]]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
 export PATH=~/bin:~/.local/bin:~/.krew/bin:~/.cargo/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 {{- if eq .term "alacritty" }}
 export TERM=alacritty
