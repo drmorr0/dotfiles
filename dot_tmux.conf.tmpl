@@ -26,9 +26,12 @@ bind | split-window -h
 bind - split-window -v
 
 # Reload conf file
-bind C-R source ~/.tmux.conf
-bind r refresh-client
+bind C-r source-file ~/.tmux.conf \; display-message "reloaded tmux.conf"
+bind r refresh-client \; display-message "reloaded client"
 
 set-option -g renumber-windows on
 set -g focus-events on
 set -s escape-time 0  # no delay on esc in vim
+
+bind -T copy-mode-vi < send -X previous-prompt
+bind -T copy-mode-vi > send -X next-prompt
