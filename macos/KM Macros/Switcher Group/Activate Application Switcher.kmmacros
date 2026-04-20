@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>759169559.17981803</real>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>ActionUID</key>
+						<integer>2</integer>
+						<key>Alpha</key>
+						<integer>50</integer>
+						<key>Blue</key>
+						<integer>128</integer>
+						<key>Green</key>
+						<integer>128</integer>
+						<key>HideOthers</key>
+						<false/>
+						<key>IconSize</key>
+						<integer>64</integer>
+						<key>IncludedApplications</key>
+						<array/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>ProgramSwitcher</string>
+						<key>MouseRollover</key>
+						<true/>
+						<key>Red</key>
+						<integer>0</integer>
+						<key>SortOrder</key>
+						<string>SortByUse</string>
+						<key>SwitcherUnderMouse</key>
+						<false/>
+						<key>WindowType</key>
+						<string>IconGrid</string>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>759169559.17392802</real>
+				<key>ModificationDate</key>
+				<real>766944995.16420698</real>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>48</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>4096</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>3BA87209-0D72-4488-88A7-F747AB6A1061</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Switcher Group</string>
+		<key>ToggleMacroUID</key>
+		<string>DBAF0BA8-55BA-435E-B93E-1D7566BC3C9C</string>
+		<key>UID</key>
+		<string>F880C574-20B4-4DB2-B48E-B3F7474D524E</string>
+	</dict>
+</array>
+</plist>

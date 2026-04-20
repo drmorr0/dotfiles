@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>759169559.17981803</real>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>ActionUID</key>
+						<integer>392</integer>
+						<key>MacroActionType</key>
+						<string>SetScreenResolution</string>
+						<key>Resolution</key>
+						<string>1728,1117,3456,2234,120</string>
+						<key>Screen</key>
+						<string>SCREENINDEX(Main)</string>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>766945196.257532</real>
+				<key>ModificationDate</key>
+				<real>769453727.06624901</real>
+				<key>Name</key>
+				<string>Set Screen Resolution Small</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>111</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>4096</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>5F2BA78E-59CC-488E-B22B-DD8E5085209D</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Global Macro Group</string>
+		<key>ToggleMacroUID</key>
+		<string>16BEFBD0-94B1-4BE4-B517-C21259F94F72</string>
+		<key>UID</key>
+		<string>804D32AF-0B39-439F-8EF3-493A833B14CA</string>
+	</dict>
+</array>
+</plist>
