@@ -1,6 +1,6 @@
 
 set default-terminal "xterm-256color"
-{{ if eq .term "alacritty" }}
+{{ if (and (hasKey . "term") (eq .term "alacritty")) }}
 set -ga terminal-overrides ",alacritty:Tc"
 {{ end }}
 

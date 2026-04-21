@@ -66,7 +66,11 @@ vcs_info_wrapper()
 }
 
 # Prompt
+{{- if eq .chezmoi.os "darwin" }}
+source /opt/homebrew/share/kube-ps1.sh
+{{- else }}
 source /home/drmorr/bin/kube-ps1.sh
+{{- end }}
 export KUBE_PS1_PREFIX=
 export KUBE_PS1_SUFFIX=" "
 export KUBE_PS1_SYMBOL_ENABLE=false
@@ -142,10 +146,20 @@ if [[ -z "${SSH_CONNECTION}" ]]; then
     export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
-export PATH=~/bin:~/.local/bin:~/.krew/bin:~/.cargo/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH
-{{- if eq .term "alacritty" }}
+export PATH=~/bin:~/.local/bin:~/.krew/bin:~/.cargo/bin:$PATH
+
+{{- if eq .chezmoi.os "darwin" }}
+export PATH=/opt/homebrew/bin:${PATH}
+{{- end }}
+
+{{- if hasKey . "extraPaths" }}
+export PATH={{.extraPath}}:${PATH}
+{{- end }}
+
+{{- if (and (hasKey . "termeq") (eq .term "alacritty")) }}
 export TERM=alacritty
 {{- end }}
+
 export FZF_DEFAULT_COMMAND='rg --files'
 eval "$(atuin init zsh --disable-up-arrow)"
 
