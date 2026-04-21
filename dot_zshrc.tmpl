@@ -153,7 +153,7 @@ export PATH=/opt/homebrew/bin:${PATH}
 {{- end }}
 
 {{- if hasKey . "extraPaths" }}
-export PATH={{.extraPath}}:${PATH}
+export PATH={{.extraPaths}}:${PATH}
 {{- end }}
 
 {{- if (and (hasKey . "termeq") (eq .term "alacritty")) }}
