@@ -7,4 +7,6 @@ macos
 .config/i3*
 .config/just
 .gdbinit
+.config/vivaldi-stable.conf
+.config/libinput-gestures.conf
 {{- end }}
