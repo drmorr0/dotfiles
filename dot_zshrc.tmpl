@@ -69,7 +69,7 @@ vcs_info_wrapper()
 {{- if eq .chezmoi.os "darwin" }}
 source /opt/homebrew/share/kube-ps1.sh
 {{- else }}
-source /home/drmorr/bin/kube-ps1.sh
+source ~/bin/kube-ps1.sh
 {{- end }}
 export KUBE_PS1_PREFIX=
 export KUBE_PS1_SUFFIX=" "
