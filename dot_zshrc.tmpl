@@ -156,7 +156,7 @@ export PATH=/opt/homebrew/bin:${PATH}
 export PATH={{.extraPaths}}:${PATH}
 {{- end }}
 
-{{- if (and (hasKey . "termeq") (eq .term "alacritty")) }}
+{{- if (and (hasKey . "term") (eq .term "alacritty")) }}
 export TERM=alacritty
 {{- end }}
 
