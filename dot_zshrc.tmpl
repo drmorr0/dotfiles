@@ -78,7 +78,7 @@ export KUBE_PS1_CTX_COLOR=green
 
 # This is insanity
 export PS1=$'%{\e]133;A\a%}%(6~.\n[%96<...<%~%<<]\n$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %(0?.%(!.#.>).X) .$(kube_ps1)%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %~ %(0?.%(!.#.>).X) )%{\e[1;00m%}'
-export RPS1='$(vcs_info_wrapper) %T'
+export RPROMPT='$(vcs_info_wrapper) %T'
 
 # This is extra insanity
 export EXA_COLORS="\
