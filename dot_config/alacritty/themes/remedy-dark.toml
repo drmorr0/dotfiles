@@ -18,12 +18,11 @@ blue = "0x5f819d"
 cyan = "0x5e8d87"
 green = "0x8c9440"
 magenta = "0x85678f"
-red = "0xa54242"
+red = "0xc54242"
 white = "0x707880"
 yellow = "0xde935f"
 
 [colors.primary]
 background = "0x2c2b2a"
-bright_foreground = "0x1C1508"
 dim_foreground = "0x685E4A"
 foreground = "0xf9e7c4"

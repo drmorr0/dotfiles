@@ -1,0 +1,40 @@
+---
+symlink_path:
+  foreground: Blue
+  is_bold: true
+
+users:
+  user_root:
+    is_underline: true
+  group_root:
+    is_underline: true
+
+punctuation:
+  foreground: White
+  is_dimmed: true
+
+perms:
+  user_read:
+    foreground: Green
+    is_bold: false
+  user_write:
+    foreground: Green
+    is_bold: false
+  user_execute_file:
+    foreground: Yellow
+    is_bold: false
+  user_execute_other:
+    foreground: Yellow
+    is_bold: false
+  group_read:
+    foreground: Green
+  group_write:
+    foreground: Green
+  group_execute:
+    foreground: Yellow
+  other_read:
+    foreground: Purple
+  other_write:
+    foreground: Red
+  other_execute:
+    foreground: Red

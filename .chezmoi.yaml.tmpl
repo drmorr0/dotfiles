@@ -1,0 +1,5 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $defaultBranch := promptChoiceOnce . "defaultBranch" "Default git branch" "main" -}}
+data:
+  email: {{ $email | quote }}
+  defaultBranch: {{ $defaultBranch }}
