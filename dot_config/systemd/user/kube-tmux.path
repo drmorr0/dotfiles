@@ -1,0 +1,10 @@
+[Unit]
+Description=Watch kubeconfig for context/namespace changes
+
+[Path]
+PathChanged=%h/.kube/config
+PathChanged=%h/.kube
+Unit=kube-tmux.service
+
+[Install]
+WantedBy=default.target

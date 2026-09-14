@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.hostname "acrl1" -}}
+#!/bin/sh
+sudo pacman -Sy eza ripgrep kubectl kubectx
+{{- else if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo apt install eza ripgrep kubectl
+{{- else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+brew install eza ripgrep kubectl
+{{ end -}}

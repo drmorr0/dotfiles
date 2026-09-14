@@ -1,3 +1,4 @@
+assets
 macos
 .config/i3/display-config
 
@@ -9,4 +10,5 @@ macos
 .gdbinit
 .config/vivaldi-stable.conf
 .config/libinput-gestures.conf
+.config/systemd
 {{- end }}

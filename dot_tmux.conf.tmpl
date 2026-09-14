@@ -35,3 +35,9 @@ set -s escape-time 0  # no delay on esc in vim
 
 bind -T copy-mode-vi < send -X previous-prompt
 bind -T copy-mode-vi > send -X next-prompt
+
+set -g mouse on
+
+run ~/.local/bin/tmux-kube-update.sh
+set -g status-left "[#{session_name}] #{@kube} "
+set -g status-left-length 100

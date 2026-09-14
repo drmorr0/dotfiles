@@ -1,0 +1,10 @@
+[Unit]
+Description=Push current kube context/namespace into tmux
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/tmux-kube-update.sh
+
+[Install]
+WantedBy=default.target

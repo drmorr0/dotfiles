@@ -1,0 +1,57 @@
+---
+.vim/pack/git-plugins/start/ale:
+  url: "https://github.com/w0rp/ale pack/git-plugins/start/ale"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-airline:
+  url: "https://github.com/vim-airline/vim-airline"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-airline-themes:
+  url: "https://github.com/vim-airline/vim-airline-themes"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-argwrap:
+  url: "https://github.com/FooSoft/vim-argwrap"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-commentary:
+  url: "https://github.com/tpope/vim-commentary"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-fugitive:
+  url: "https://github.com/tpope/vim-fugitive"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-gitgutter:
+  url: "https://github.com/airblade/vim-gitgutter"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-go:
+  url: "https://github.com/fatih/vim-go"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-qf:
+  url: "https://github.com/romainl/vim-qf"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-surround:
+  url: "https://github.com/tpope/vim-surround"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-localvimrc:
+  url: "https://github.com/embear/vim-localvimrc"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/vim-just:
+  url: "https://github.com/NoahTheDuke/vim-just"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/fzf.vim:
+  url: "https://github.com/junegunn/fzf.vim"
+  type: git-repo
+  refreshPeriod: 168h
+.vim/pack/git-plugins/start/fzf:
+  url: "https://github.com/junegunn/fzf"
+  type: git-repo
+  refreshPeriod: 168h
