@@ -14,5 +14,8 @@ decorations = "none"
 [terminal.shell]
 program = "/usr/bin/tmux"
 
+[cursor]
+blink_timeout = 0
+
 [general]
 import = ["/home/drmorr/.config/alacritty/themes/remedy-dark.toml"]

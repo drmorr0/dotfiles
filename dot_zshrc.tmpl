@@ -27,6 +27,13 @@ unsetopt PUSHD_SILENT
 unsetopt CHECK_JOBS
 unsetopt AUTO_CD
 
+# change the cursor in vim mode
+_cursor() { [[ $KEYMAP == vicmd ]] && printf '\e[1 q' || printf '\e[2 q' }
+zle -N zle-keymap-select _cursor
+zle -N zle-line-init     _cursor
+# reset the cursor after pressing enter, apparently some programs just leave it in whatever shape they want
+preexec() { printf '\e[2 q' }
+
 # Not sure if these are correct for all distros... to find out the right settings
 # for bindkey, run cat and press home/end/etc., then paste those values here.
 
