@@ -4,6 +4,7 @@ macos
 
 {{- if ne .chezmoi.os "darwin" }}
 Library/*
+install_plist_macos.sh
 {{- end }}
 
 {{- if ne .chezmoi.hostname "acrl1" }}
