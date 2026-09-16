@@ -64,18 +64,6 @@ zstyle ':vcs_info:*' actionformats '<%r/%0.24%b...|%a>'
 zstyle ':vcs_info:*' formats '(%r/%0.24b...)'
 zstyle ':vcs_info:*' enable git
 
-vcs_info_wrapper()
-{
-	vcs_info
-	if [ -n "$vcs_info_msg_0_" ]; then
-		echo "${vcs_info_msg_0_}"
-	fi
-}
-
-# This is insanity
-export PS1=$'%{\e]133;A\a%}%(6~.\n[%96<...<%~%<<]\n%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %(0?.%(!.#.>).X) .%(0?.%{\e[1;34m%}.%{\e[1;31m%})%n@%m%(0?.%{\e[1;00m%}.) %~ %(0?.%(!.#.>).X) )%{\e[1;00m%}'
-export RPROMPT='$(vcs_info_wrapper) %T'
-
 # Aliases
 alias j='just'
 alias ls='eza --icons=always'
@@ -142,3 +130,70 @@ export MISE_PYTHON_DEFAULT_PACKAGES_FILE=.config/mise/default-python-packages
 
 eval "$(/usr/bin/mise activate zsh)"
 {{- end }}
+
+## All prompt stuff goes here
+#
+_cmd_timer_start() {
+  typeset -g _cmd_start=$EPOCHREALTIME
+}
+
+_cmd_timer_stop() {
+  local ret=$?
+  typeset -g _cmd_elapsed=
+
+  # No command ran (e.g. empty Enter)
+  if (( ! ${+_cmd_start} )); then
+    return $ret
+  fi
+
+  local -F secs=$(( EPOCHREALTIME - _cmd_start ))
+  unset _cmd_start
+
+  if (( secs < 10 )); then
+      return $ret
+  elif (( secs >= 60 )); then
+    local -i total=secs
+    _cmd_elapsed="$(( total / 60 ))m$(( total % 60 ))s"
+  else
+    _cmd_elapsed="$(printf '%.2fs' $secs)"
+  fi
+
+  return $ret
+}
+
+add-zsh-hook preexec _cmd_timer_start
+add-zsh-hook precmd  _cmd_timer_stop
+
+() {
+  # OSC 133;A: marks the start of the prompt so that I can navitage back to it in tmux
+  local mark=$'%{\e]133;A\a%}'
+
+  # Bold blue after success, bold red after failure
+  local color='%B%(0?.%F{blue}.%F{red})'
+
+  # Reset only on success, so red continues through the symbol on failure
+  local reset_ok='%(0?.%b%f.)'
+
+  # '#' as root, '>' otherwise, 'X' after a failed command
+  local symbol='%(0?.%(!.#.>).X)'
+
+  local userhost="${color}%n@%m${reset_ok}"
+
+  local timer='${_cmd_elapsed:+%F{yellow\}[$_cmd_elapsed]%f }'
+  local ts="%F{green}%T ${timer}"
+
+  # 6+ path elements: path on its own line, left-truncated to 96 chars
+  local long=$'\n[%96<...<%~%<<]\n'"${ts} ${userhost} ${symbol} "
+  local short="${ts}${userhost} %~ ${symbol} "
+
+  PROMPT="${mark}%(6~|${long}|${short})%b%f"
+}
+
+vcs_info_wrapper()
+{
+	vcs_info
+	if [ -n "$vcs_info_msg_0_" ]; then
+		echo "${vcs_info_msg_0_}"
+	fi
+}
+RPROMPT='$(vcs_info_wrapper)'
