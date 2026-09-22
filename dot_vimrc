@@ -86,6 +86,8 @@ hi Pmenu ctermbg=1
 
 hi Folded ctermbg=11
 
+hi Comment cterm=italic
+
 hi Constant ctermfg=105
 hi! link SpecialComment Comment
 " }}}
