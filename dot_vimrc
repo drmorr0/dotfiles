@@ -105,6 +105,19 @@ hi! link SpecialComment Comment
   " }}}
 
   " ale {{{
+
+    augroup ale_markdownlint
+      autocmd!
+      autocmd FileType markdown call s:SetMarkdownlintConfig()
+    augroup END
+
+    function! s:SetMarkdownlintConfig() abort
+      let l:cfg = findfile('.markdownlint.yaml', expand('%:p:h') . ';')
+      if !empty(l:cfg)
+        let b:ale_markdown_markdownlint_options = '--config ' . shellescape(fnamemodify(l:cfg, ':p'))
+      endif
+    endfunction
+
     let g:ale_set_highlights = 0
     let g:ale_sign_column_always = 1
     let g:ale_set_loclist = 0
@@ -117,6 +130,7 @@ hi! link SpecialComment Comment
                 \ }
     " note that linters just show error messages inline, fixers actually fix things on save
     let g:ale_linters = {'python': ['ruff'], 'rust': ['analyzer']}
+    let g:ale_linters_ignore = {'markdown': ['pymarkdown']}
     let g:ale_fix_on_save = 1
   " }}}
 

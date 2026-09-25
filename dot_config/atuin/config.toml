@@ -150,3 +150,6 @@ common_subcommands = [
 #common_prefix = ["sudo"]
 
 ignored_commands = ["cd", "ls", "exit"]
+
+[ai]
+enabled = false
