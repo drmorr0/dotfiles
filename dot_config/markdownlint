@@ -1,24 +1,26 @@
-{
-    "default": true,
+default=true
 
-    "MD001": false,
-    "MD007": false,
-    "MD013": {
-        "line_length": 120,
-        "code_blocks": false,
-        "headings": false,
-        "tables": false,
-    },
-    "MD024": false,
-    "MD026": false,
-    "MD033": false,
-    "MD041": false,
-    "MD045": false,
-    "MD049": false,
-    "MD051": {"ignored_pattern": "fn"},
-    "MD053": false,
-    "MD055": false,
-    "MD056": false,
-    "MD059": false,
-    "MD060": false
-}
+MD001=false  ; heading increment one at a time
+MD007=false  ; unordered list indentation
+MD024=false  ; no duplicate headings
+MD026=false  ; no trailing punctuation in headings
+MD033=false  ; inline HTML
+MD041=false  ; first line top level heading
+MD045=false  ; no alt text
+MD049=false  ; emphasis style
+MD053=false  ; link-image-reference definitions needed
+MD055=false  ; table pipe style
+MD056=false  ; table column count
+MD059=false  ; descriptive link text
+MD060=false  ; table column style
+
+; line length
+[MD013]
+  line_length=120
+  code_blocks=false
+  headings=false
+  tables=false
+
+; link-fragments
+[MD051]
+  ignored_pattern=fn
