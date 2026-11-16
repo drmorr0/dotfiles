@@ -126,7 +126,6 @@ eval "$(atuin init zsh --disable-up-arrow)"
 {{- if eq .chezmoi.hostname "acrl1" }}
 export MISE_POETRY_AUTO_INSTALL=1
 export MISE_POETRY_VENV_AUTO=1
-export MISE_PYTHON_DEFAULT_PACKAGES_FILE=.config/mise/default-python-packages
 
 eval "$(/usr/bin/mise activate zsh)"
 {{- end }}
